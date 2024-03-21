@@ -15,13 +15,18 @@ import { Router } from '@angular/router';
 })
 export class LayoutMainComponent implements OnInit {
   valueColorTheme: boolean = false;
+  operator: boolean = false;
   constructor(@Inject(DOCUMENT) public document: Document, private snackBar: MatSnackBar, private sharedService: SharedService, private router: Router ) {}
   ngOnInit(): void {
     this.sharedService.toggleValueOBS.subscribe(res => {
       this.valueColorTheme = res;
       this.changeTheme();
 
-    })
+    });
+
+    this.operator = localStorage.getItem('authLogin') === 'true' ? true : false;
+
+
   }
 
   changeTheme() {
@@ -32,8 +37,28 @@ export class LayoutMainComponent implements OnInit {
 
   goLogin() {
 
-    this.router.navigateByUrl('worker/app').then();
+    const isLog =  localStorage.getItem('authLogin');
 
+    if (isLog && isLog === 'true') {
+
+      this.router.navigateByUrl('worker/app').then();
+      
+    } else {
+      this.router.navigateByUrl('worker/login').then();
+
+    }
+    
+
+  }
+
+
+  logout() {
+
+    this.router.navigateByUrl('worker/login').then(() => {
+      localStorage.removeItem('authLogin');
+      window.location.reload();
+
+    });
   }
 
   change() {

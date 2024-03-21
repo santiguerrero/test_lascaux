@@ -5,11 +5,13 @@ import { WorkerRoutingModule } from './worker-routing.module';
 import { ManagementFilmsComponent } from './components/management-films/management-films.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from '../shared/shared.module';
+import { LoginComponent } from './components/login/login.component';
 
 
 @NgModule({
   declarations: [
-    ManagementFilmsComponent
+    ManagementFilmsComponent,
+    LoginComponent
   ],
   imports: [
     CommonModule,

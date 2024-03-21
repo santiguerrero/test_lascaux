@@ -1,33 +1,41 @@
 <!-- Header no sidenav, no sidebar, no drawer -->
 <mat-toolbar color="primary">
 
-    <mat-toolbar-row>
-      <a style="text-decoration: none; color: white;" routerLink="/films">
-        Cine Mille
-      </a>
-      <span class="spacer"></span>
-      
-
-      <div class="d-flex gap-4">
-
-        <mat-slide-toggle [(ngModel)]=" valueColorTheme " (ngModelChange)="change()" matTooltip="Dark mode" >
-  
-          <mat-icon>
-            {{valueColorTheme ? 'dark_mode' : 'light_mode'}}
-          </mat-icon>
-          
-        </mat-slide-toggle>
-  
-  
-        <button mat-flat-button (click)="goLogin()" >Are you a worker?</button>
-      </div>
+  <mat-toolbar-row>
+    <a style="text-decoration: none; color: white;" routerLink="/films">
+      Cine Mille
+    </a>
+    <span class="spacer"></span>
 
 
+    <div class="d-flex gap-4">
 
-   
-    </mat-toolbar-row>
-  </mat-toolbar>
+      <mat-slide-toggle [(ngModel)]=" valueColorTheme " (ngModelChange)="change()" matTooltip="Dark mode">
 
-  <!-- Main :) -->
+        <mat-icon>
+          {{valueColorTheme ? 'dark_mode' : 'light_mode'}}
+        </mat-icon>
 
-  <router-outlet></router-outlet>
+      </mat-slide-toggle>
+
+
+      <ng-container *ngIf="operator; else notLog">
+
+        <button mat-flat-button color="warn" (click)="logout()"> Logout</button>
+      </ng-container>
+      <ng-template #notLog>
+
+        <button mat-flat-button (click)="goLogin()"> Are you a worker? </button>
+
+      </ng-template>
+    </div>
+
+
+
+
+  </mat-toolbar-row>
+</mat-toolbar>
+
+<!-- Main :) -->
+
+<router-outlet></router-outlet>
