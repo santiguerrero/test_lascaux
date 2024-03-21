@@ -21,7 +21,13 @@
 
       <ng-container *ngIf="operator; else notLog">
 
-        <button mat-flat-button color="warn" (click)="logout()"> Logout</button>
+        <div class="d-flex gap-2">
+          <button mat-flat-button color="warn" (click)="logout()"> Logout</button>
+  
+          <button mat-flat-button color="accent"> Panello di controllo </button>
+
+        </div>
+
       </ng-container>
       <ng-template #notLog>
 
