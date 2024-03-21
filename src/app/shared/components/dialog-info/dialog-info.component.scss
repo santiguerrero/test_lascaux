@@ -1,0 +1,11 @@
+.cast_item {
+  overflow: hidden;
+
+  width: 150px;
+  border: 1px solid black;
+}
+
+.cast_item_wrap {
+  overflow: auto;
+  max-height: 800px;
+}

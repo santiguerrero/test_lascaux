@@ -14,16 +14,16 @@ describe('AppComponent', () => {
     expect(app).toBeTruthy();
   });
 
-  it(`should have as title 'lascaux_test'`, () => {
+  it(`should have as title 'test-lascaux'`, () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.componentInstance;
-    expect(app.title).toEqual('lascaux_test');
+    expect(app.title).toEqual('test-lascaux');
   });
 
   it('should render title', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('.content span')?.textContent).toContain('lascaux_test app is running!');
+    expect(compiled.querySelector('.content span')?.textContent).toContain('test-lascaux app is running!');
   });
 });

@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "lascaux_test": {
+    "test-lascaux": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -17,7 +17,10 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/lascaux_test",
+            "allowedCommonJsDependencies": [
+              "lodash", "leaflet"
+            ],
+            "outputPath": "dist/test-lascaux",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": [
@@ -26,11 +29,18 @@
             "tsConfig": "tsconfig.app.json",
             "inlineStyleLanguage": "scss",
             "assets": [
-              "src/favicon.ico",
-              "src/assets"
+              "src/assets",
+              {
+                "glob": "**/*",
+                "input": "./node_modules/leaflet/dist/images/",
+                "output": "./assets/"
+              }
             ],
             "styles": [
-              "src/styles.scss"
+              "src/styles.scss",
+              "src/reset.scss",
+              "./node_modules/bootstrap/dist/css/bootstrap.min.css",
+              "./node_modules/leaflet/dist/leaflet.css"
             ],
             "scripts": []
           },
@@ -40,7 +50,7 @@
                 {
                   "type": "initial",
                   "maximumWarning": "500kb",
-                  "maximumError": "1mb"
+                  "maximumError": "2mb"
                 },
                 {
                   "type": "anyComponentStyle",
@@ -65,10 +75,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "lascaux_test:build:production"
+              "browserTarget": "test-lascaux:build:production"
             },
             "development": {
-              "browserTarget": "lascaux_test:build:development"
+              "browserTarget": "test-lascaux:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -76,7 +86,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "lascaux_test:build"
+            "browserTarget": "test-lascaux:build"
           }
         },
         "test": {
@@ -102,6 +112,6 @@
     }
   },
   "cli": {
-    "analytics": "455e18cf-02ff-4323-969a-5a55a5699ef7"
+    "analytics": "6090a4b7-0506-4473-ad49-b6b70f7d7153"
   }
 }

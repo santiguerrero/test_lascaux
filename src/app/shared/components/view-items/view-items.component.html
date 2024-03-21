@@ -1,0 +1,110 @@
+<div class="d-flex flex-{{view}} gap-3  w-100" [ngClass]="{'justify-content-center': layoutMobile}">
+
+    <ng-container *ngFor="let itemFilm of films; index as i">
+        <mat-card @fadeSlideInOut class="non_style inn_animation" [ngClass]="{'wrap_filter': view == 'wrap'}" *ngIf="!itemFilm.adult">
+
+            <mat-card-header [matBadge]="itemFilm.vote_average">
+                <div mat-card-avatar *ngIf="itemFilm?.poster_path">
+
+                    <ng-container *ngIf="itemFilm.sala?.imax ; else normalSala">
+
+                        <img [src]="'../../../../assets/images/imax_logo.svg'" width="70"
+                            [alt]="'withImax'">
+                    
+                    </ng-container>
+
+                    <ng-template #normalSala >
+
+                        <img [src]="'../../../../assets/images/logo-f.png'" width="100%"
+                            [alt]="itemFilm.original_title">
+                    </ng-template>
+                   
+                </div>
+                <mat-card-title style="margin-left: 40px;">
+                    <h6 >
+                        {{itemFilm.original_title || ''}}
+
+                    </h6>
+                </mat-card-title>
+                <mat-card-subtitle *ngIf="itemFilm?.poster_path" style="margin-left: 40px;">
+                    <span class="d-flex align-items-center">
+                        Language:  {{itemFilm.original_language}}
+
+                    </span>
+                </mat-card-subtitle>
+            </mat-card-header>
+            <mat-card-content>
+
+                <div class="d-flex justify-content-between w-100">
+
+                    <div class="d-flex">
+                        <ng-container *ngIf="itemFilm?.poster_path ; else noImage">
+        
+                            <img [src]="itemFilm.poster_path" width="250" height="300"
+                                [alt]="itemFilm.original_title">
+                        </ng-container>
+                        <ng-template #noImage>
+        
+                            <img [src]="'../../../../assets/images/no-image-pl.PNG'" [width]="200" [alt]="'noImage'">
+        
+                        </ng-template>
+
+                    </div>
+
+                    <div class="d-flex">
+                        <span style="margin-left: 100px;">
+                            {{view == 'column' ? itemFilm.overview  : ''}}
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+
+
+
+            </mat-card-content>
+
+            <mat-card-actions>
+                <div class="d-flex justify-content-between w-100 align-items-center ">
+
+                    <div class="d-flex gap-2">
+                        <button mat-button color="primary" (click)="openCast(itemFilm.casts); ">
+
+                            Casts
+
+                        </button>
+
+                        <button mat-button color="primary" (click)="openDialog(itemFilm.sala, itemFilm.release_date, management); ">
+
+                            Sala & Info
+
+                        </button>
+
+                    </div>
+
+                    <div class="d-flex">
+
+                        <button color="primary" mat-icon-button matTooltip="Like">
+                            <mat-icon>favorite</mat-icon>
+                        </button>
+                        <button color="accent" mat-icon-button matTooltip="Share">
+                            <mat-icon>
+                                share
+                            </mat-icon>
+                        </button>
+
+                    </div>
+
+                </div>
+               
+            </mat-card-actions>
+
+
+
+        </mat-card>
+
+    </ng-container>
+
+</div>
